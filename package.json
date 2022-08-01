@@ -1,0 +1,26 @@
+{
+  "name": "backend_pqrsf",
+  "version": "1.0.0",
+  "description": "API para gestionar CMR Coonfie PQRSF",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm run test",
+    "start": "node app"
+  },
+  "keywords": [
+    "PQRSF",
+    "Coonfie"
+  ],
+  "author": "Desarrollador Sistemas Coonfie",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-fileupload": "^1.4.0",
+    "express-validator": "^6.14.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.5.0",
+    "uuid": "^8.3.2"
+  }
+}
