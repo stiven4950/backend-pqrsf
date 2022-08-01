@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const fileUpload = require('express-fileupload');
+// const fileUpload = require('express-fileupload');
 
 const { dbConnection } = require('../database/config');
 
@@ -13,11 +13,13 @@ class Server {
         this.paths = {
             auth: '/api/auth',
             user: '/api/user',
+            admin: '/api/admin',
+            city: '/api/city',
+            matter: '/api/matter',
         }
 
-
         // Connect database
-        this.conectarDB();
+        this.connectDB();
 
         // Middlewares
         this.middlewares();
@@ -26,7 +28,7 @@ class Server {
         this.routes();
     }
 
-    async conectarDB() {
+    async connectDB() {
         await dbConnection();
     }
 
@@ -43,31 +45,28 @@ class Server {
         this.app.use(express.static('public'));
 
         // Fileupload - Carga de archivos
-        this.app.use(fileUpload({
+        /* this.app.use(fileUpload({
             useTempFiles: true,
             tempFileDir: '/tmp/',
             createParentPath: true
-        }));
-
+        })); */
     }
 
     routes() {
-
         this.app.use(this.paths.auth, require('../routes/auth'));
         this.app.use(this.paths.user, require('../routes/user'));
-        this.app.use(this.paths.uploads, require('../routes/uploads'));
-
+        this.app.use(this.paths.admin, require('../routes/admin'));
+        this.app.use(this.paths.city, require('../routes/city'));
+        this.app.use(this.paths.matter, require('../routes/matter'));
+        // this.app.use(this.paths.uploads, require('../routes/uploads'));
     }
 
     listen() {
         this.app.listen(this.port, () => {
-            console.log('Servidor corriendo en puerto', this.port);
+            console.log('Server is runing on port', this.port);
         });
     }
 
 }
-
-
-
 
 module.exports = Server;
