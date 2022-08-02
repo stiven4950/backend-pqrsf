@@ -4,7 +4,10 @@ const { generateTicketNumber } = require('../utils/utils');
 
 const fillingsGet = async (req, res = response) => {
 
-    const fillings = await Filling.find();
+    const fillings = await Filling.find()
+        .populate('user', 'document_number fullname phone email')
+        .populate('city', 'name')
+        .populate('matter', 'matter_type name');
 
     res.json(fillings);
 }
@@ -12,7 +15,10 @@ const fillingsGet = async (req, res = response) => {
 const getFillingByTicketNumber = async (req, res = response) => {
 
     const { ticket } = req.params;
-    const filling = await Filling.findOne({ticket: ticket});
+    const filling = await Filling.findOne({ticket: ticket})
+    .populate('user', 'document_number fullname phone email')
+    .populate('city', 'name')
+    .populate('matter', 'matter_type name');
 
     res.json(filling);
 
