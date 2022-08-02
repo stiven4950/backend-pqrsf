@@ -6,9 +6,7 @@ const fillingsGet = async (req, res = response) => {
 
     const fillings = await Filling.find();
 
-    res.json({
-        fillings
-    });
+    res.json(fillings);
 }
 
 const getFillingByTicketNumber = async (req, res = response) => {
@@ -22,7 +20,7 @@ const getFillingByTicketNumber = async (req, res = response) => {
 
 const createFillingIdentifiedUser = async (req, res = response) => {
     const { document_number,  ...body } = req.body;
-    const user = await User.findOne({document_number:document_number});
+    let user = await User.findOne({document_number:document_number});
 
     if(!user) {
         const { fullname, phone, email, } = req.body;
