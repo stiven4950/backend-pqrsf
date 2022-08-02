@@ -30,7 +30,7 @@ const FillingSchema = Schema({
         required: [true, '<description> is required'],
         maxlength: 2000,
     },
-    filing_date: {
+    filling_date: {
         type: Date,
         default: Date.now
     },

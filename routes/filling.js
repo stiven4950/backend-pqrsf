@@ -15,9 +15,19 @@ const router = Router();
 router.get('/', fillingsGet);
 router.get('/:ticket', getFillingByTicketNumber);
 
-router.post('/', [
+router.post('/anonimous', [
     validateJWT,
     validateFields
-], cityCreate);
+], createFillingAnonimousUser);
+
+router.post('/identified', [
+    validateJWT,
+    validateFields
+], createFillingIdentifiedUser);
+
+router.put('/', [
+    validateJWT,
+    validateFields,
+], updateFilling);
 
 module.exports = router;

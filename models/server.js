@@ -16,6 +16,7 @@ class Server {
             admin: '/api/admin',
             city: '/api/city',
             matter: '/api/matter',
+            filling: '/api/filling',
         }
 
         // Connect database
@@ -58,6 +59,7 @@ class Server {
         this.app.use(this.paths.admin, require('../routes/admin'));
         this.app.use(this.paths.city, require('../routes/city'));
         this.app.use(this.paths.matter, require('../routes/matter'));
+        this.app.use(this.paths.filling, require('../routes/filling'));
         // this.app.use(this.paths.uploads, require('../routes/uploads'));
     }
 
