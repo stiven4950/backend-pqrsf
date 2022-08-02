@@ -52,7 +52,7 @@ const createFillingIdentifiedUser = async (req, res = response) => {
 }
 
 const createFillingAnonimousUser = async (req, res = response) => {
-    const { body } = req.body;
+    const body = req.body;
     
     const filling = new Filling({
         ticket: generateTicketNumber(),
