@@ -10,11 +10,11 @@ const FillingSchema = Schema({
     city: {
         type: Schema.Types.ObjectId,
         ref: 'City',
-        required: true,
+        required: false,
     },
     address: {
         type: String,
-        required: [true, '<address> is required'],
+        required: false,
     },
     matter: {
         type: Schema.Types.ObjectId,
@@ -23,7 +23,7 @@ const FillingSchema = Schema({
     },
     medium: {
         type: String,
-        required: [true, '<medium> is required'],
+        required: false,
     },
     description: {
         type: String,
