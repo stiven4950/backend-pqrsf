@@ -17,7 +17,7 @@ const getFillingByTicketNumber = async (req, res = response) => {
     const { ticket } = req.params;
     const filling = await Filling.findOne({ticket: ticket})
     .populate('user', 'document_number fullname phone email')
-    .populate('city', 'name')
+    .populate('city', 'cod name')
     .populate('matter', 'matter_type name');
 
     res.json(filling);
