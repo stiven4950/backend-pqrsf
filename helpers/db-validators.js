@@ -1,4 +1,3 @@
-const Role = require('../models/role');
 const { Admin } = require('../models');
 
 const emailExists = async (email = '') => {

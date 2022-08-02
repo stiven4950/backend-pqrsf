@@ -3,15 +3,9 @@ const { City } = require('../models');
 
 const citiesGet = async (req, res = response) => {
 
-    const [total, cities] = await Promise.all([
-        City.find()
-            .populate('name'),
-    ]);
+    const cities = await City.find().populate('name');
 
-    res.json({
-        total,
-        cities
-    });
+    res.json(cities);
 }
 
 const cityCreate = async (req, res = response) => {

@@ -3,15 +3,18 @@ const { Matter } = require('../models');
 
 const mattersGet = async (req, res = response) => {
 
-    const [total, matters] = await Promise.all([
-        Matter.find()
-            .populate('name'),
-    ]);
+    const matters = await Matter.find().populate('name');
 
-    res.json({
-        total,
-        matters
-    });
+    res.json(matters);
+}
+
+const mattersGetByType = async (req, res = response) => {
+
+    const { matter_type } = req.params;
+
+    const matters = await Matter.find({ matter_type });
+
+    res.json(matters);
 }
 
 const matterCreate = async (req, res = response) => {
@@ -31,4 +34,5 @@ const matterCreate = async (req, res = response) => {
 module.exports = {
     matterCreate,
     mattersGet,
+    mattersGetByType,
 }

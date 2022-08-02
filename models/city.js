@@ -1,9 +1,15 @@
 const { Schema, model } = require('mongoose');
 
 const CitySchema = Schema({
+    cod: {
+        type: String,
+        required: [true, '<cod> is required'],
+        unique: true,
+        maxlength: 5,
+    },
     name: {
         type: String,
-        required: [true, 'Name is required'],
+        required: [true, '<name> is required'],
         unique: true,
         maxlength: 250,
     },

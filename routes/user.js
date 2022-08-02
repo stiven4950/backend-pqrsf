@@ -1,13 +1,9 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 
-const {
-    validateFields,
-} = require('../middlewares');
+const { validateFields, validateJWT } = require('../middlewares');
 
-const {
-    usersGet,
-} = require('../controllers/user');
+const { usersGet, usersDelete } = require('../controllers/user');
 
 const router = Router();
 
@@ -17,6 +13,6 @@ router.delete('/:id', [
     validateJWT,
     check('id', 'It is not a valid Mongo Id').isMongoId(),
     validateFields
-], adminDelete);
+], usersDelete);
 
 module.exports = router;

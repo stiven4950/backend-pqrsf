@@ -29,7 +29,6 @@ router.post('/', [
     check('password', '<password> must be larger than 5 characters').isLength({ min: 6 }),
     check('email', '<email> is incorrect').isEmail(),
     check('email').custom(emailExists),
-    validateFields
 ], adminPost);
 
 router.delete('/:id', [
