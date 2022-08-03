@@ -37,7 +37,9 @@ class Server {
     middlewares() {
 
         // CORS
-        this.app.use(cors());
+        this.app.use(cors({
+            origin: '*',
+        }));
 
         // read and conversion of body
         this.app.use(express.json());
@@ -51,13 +53,6 @@ class Server {
             tempFileDir: '/tmp/',
             createParentPath: true
         })); */
-        this.app.use((req, res, next) => {
-            res.header('Access-Control-Allow-Origin', '*');
-            res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-            res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-            res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
-            next();
-        });
         
     }
 
