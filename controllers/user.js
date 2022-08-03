@@ -13,15 +13,9 @@ const usersGet = async (req = request, res = response) => {
 
     const { limit = 5, from = 0 } = req.query;
 
-    const [total, users] = await Promise.all([
-        User.skip(Number(desde))
-            .limit(Number(limit))
-    ]);
+    const users = await User.find().skip(Number(desde)).limit(Number(limit));
 
-    res.json({
-        total,
-        users
-    });
+    res.json(users);
 }
 
 const usersPost = async (req, res = response) => {
@@ -29,10 +23,7 @@ const usersPost = async (req, res = response) => {
     const user = new User({ document_number, fullname, phone, email });
     await user.save();
 
-    res.json({
-        user,
-        token
-    });
+    res.json(user);
 }
 
 const usersPut = async (req, res = response) => {

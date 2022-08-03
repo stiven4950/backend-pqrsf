@@ -4,17 +4,21 @@ const { generateTicketNumber } = require('../utils/utils');
 
 const fillingsGet = async (req, res = response) => {
 
-    const fillings = await Filling.find();
+    const fillings = await Filling.find()
+        .populate('user', 'document_number fullname phone email')
+        .populate('city', 'name')
+        .populate('matter', 'matter_type name');
 
-    res.json({
-        fillings
-    });
+    res.json(fillings);
 }
 
 const getFillingByTicketNumber = async (req, res = response) => {
 
     const { ticket } = req.params;
-    const filling = await Filling.findOne({ticket: ticket});
+    const filling = await Filling.findOne({ticket: ticket})
+    .populate('user', 'document_number fullname phone email')
+    .populate('city', 'cod name')
+    .populate('matter', 'matter_type name');
 
     res.json(filling);
 
@@ -22,7 +26,7 @@ const getFillingByTicketNumber = async (req, res = response) => {
 
 const createFillingIdentifiedUser = async (req, res = response) => {
     const { document_number,  ...body } = req.body;
-    const user = await User.findOne({document_number:document_number});
+    let user = await User.findOne({document_number:document_number});
 
     if(!user) {
         const { fullname, phone, email, } = req.body;
@@ -48,7 +52,7 @@ const createFillingIdentifiedUser = async (req, res = response) => {
 }
 
 const createFillingAnonimousUser = async (req, res = response) => {
-    const { body } = req.body;
+    const body = req.body;
     
     const filling = new Filling({
         ticket: generateTicketNumber(),
