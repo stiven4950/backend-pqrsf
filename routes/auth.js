@@ -17,7 +17,6 @@ router.post('/login',[
 router.post('/login-uid',[
     check('uid', 'UID is required').isMongoId(),
     check('password', 'Password is required').not().isEmpty(),
-    validateFields
 ], loginUID );
 
 router.get('/',[
