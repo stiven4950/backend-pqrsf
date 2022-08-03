@@ -2,10 +2,10 @@
   "name": "backend_pqrsf",
   "version": "1.0.0",
   "description": "API para gestionar CMR Coonfie PQRSF",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "test": "npm run test",
-    "start": "node app"
+    "start": "node .",
+    "dev": "nodemon ."
   },
   "keywords": [
     "PQRSF",
