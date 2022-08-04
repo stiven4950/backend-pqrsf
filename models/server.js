@@ -1,5 +1,8 @@
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+
 // const fileUpload = require('express-fileupload');
 
 const { dbConnection } = require('../database/config');
@@ -40,12 +43,10 @@ class Server {
         this.app.use(cors({
             origin: '*',
         }));
-
-        // read and conversion of body
-        this.app.use(express.json());
-
-        // public directory
-        this.app.use(express.static('public'));
+        //this.app.use(express.json());
+        this.app.use(bodyParser.json());
+        this.app.use(morgan('dev'));
+        //this.app.use(express.static('public'));
 
         // Fileupload - Carga de archivos
         /* this.app.use(fileUpload({

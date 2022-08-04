@@ -54,6 +54,7 @@ const login = async (req, res = response) => {
 const loginUID = async (req, res = response) => {
 
     const { uid, password } = req.body;
+    console.log(req.body);
 
     try {
         // Verify if email exists
@@ -63,14 +64,12 @@ const loginUID = async (req, res = response) => {
                 msg: 'User / Password are incorrect - <email>'
             });
         }
-
         // If User is active
         if (!admin.state) {
             return res.status(400).json({
                 msg: 'User / Password are incorrect state: false'
             });
         }
-
         // Verify password
         const validPassword = bcryptjs.compareSync(password, admin.password);
         if (!validPassword) {
